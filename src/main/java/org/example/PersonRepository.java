@@ -5,21 +5,19 @@ import java.util.*;
 public class PersonRepository {
     private List<Person> personList = new ArrayList<>();
     private Map<String, Person> personMap = new HashMap<>();
-    public Optional<Person> getPersonById(String id){
-        for(Person person : personList){
-            if(person.id().equals(id)){
-               return Optional.of(person);
+
+    public Optional<Person> getPersonByIdList(String id){
+        Person person = Optional.ofNullable(this.personMap.get(id)).orElse(new Person("","",DaysOfWeek.MONDAY,Gender.DIVERSE));
+        return Optional.of(person);
+    }
+    public Optional<Person> getPersonByIdMap(String id){
+        Person person = null;
+        for(Person person1 : personList){
+            if(person1.id().equals(id)){
+                person = Optional.of(person1).orElse(new Person("","",DaysOfWeek.MONDAY,Gender.DIVERSE));
             }
         }
-        return Optional.empty();
-    }
-    public Optional<Person> getPersonById2(String id){
-        Person person = this.personMap.get(id);
-        if(person != null){
-            return Optional.of(person);
-        }
-
-        return Optional.empty();
+        return Optional.ofNullable(person);
     }
 
     public void addPerson(Person person){
