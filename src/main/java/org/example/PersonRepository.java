@@ -35,12 +35,13 @@ public class PersonRepository {
     }
 
     public Optional<Person> findPersonByName(String name){
-        for(Person person : personList){
-            if(person.name().equals(name)){
-                return Optional.of(person);
+        Person person = null;
+        for(Person person1 : personList){
+            if(person1.name().equals(name)){
+                person = person1;
             }
         }
-        return Optional.empty();
+        return Optional.of(Optional.ofNullable(person).orElse(new Person("", "", DaysOfWeek.MONDAY, Gender.DIVERSE)));
     }
     public List<Person> findPersonsByFavoriteDay(DaysOfWeek favoriteDay){
         List<Person> personList1 = new ArrayList<>();
