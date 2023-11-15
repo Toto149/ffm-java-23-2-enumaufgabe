@@ -41,7 +41,7 @@ public class PersonRepository {
                 person = person1;
             }
         }
-        return Optional.of(Optional.ofNullable(person).orElse(new Person("", "", DaysOfWeek.MONDAY, Gender.DIVERSE)));
+        return Optional.ofNullable(person);
     }
     public List<Person> findPersonsByFavoriteDay(DaysOfWeek favoriteDay){
         List<Person> personList1 = new ArrayList<>();
